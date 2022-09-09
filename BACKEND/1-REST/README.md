@@ -6,10 +6,10 @@
 
 -Code spelunking 
     -What are some important information we should know?
-    -Can you identify the seed data, models, study what’s in the server, basically just familiarize yourself with the codebase. While you are doing that, I will be setting up the demo via vs code as it is a lot cleaner to follow on.
+    -Can you identify the seed data, seed function, models, study what’s in the server, basically familiarize yourself with the codebase.
+    -Identify how data is being seeded into our database. Where does this happen? How does this happen?
 
 -RESTful Lecture + DEMO
-
 -Exercises
 -Query String parameters - What are they?
 -Query String parameters DEMO
