@@ -7,6 +7,12 @@ const { Op } = require('sequelize');
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
+//RESTFUL route examples
+app.get('/get-dogs/', async (req, res, next) => {
+  //DEMO HERE!!!!!!
+});
+
+
 app.get('/dogs/', async (req, res, next) => {
   //DEMO HERE!!!!!!
 });
