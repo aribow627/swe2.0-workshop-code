@@ -12,6 +12,8 @@ app.get('/get-dogs/', async (req, res, next) => {
   //DEMO HERE!!!!!!
 });
 
+
+
 //Query String parameters
 app.get('/dogs/', async (req, res, next) => {
   //DEMO HERE!!!!!!
