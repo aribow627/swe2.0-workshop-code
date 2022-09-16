@@ -2,7 +2,6 @@
 
 ## Objectives - what are we going to learn today?
 
-- An overview of how we can protect data []
 - Encoding, Encryption, Hashing []
 - What is Hashing? []
 - Why Hashing? []
@@ -15,7 +14,6 @@
 ## Encryption
 
 ## Hashing
-
 
 
 ### How does hashing work
