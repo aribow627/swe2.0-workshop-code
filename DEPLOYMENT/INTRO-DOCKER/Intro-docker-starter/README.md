@@ -32,3 +32,29 @@
 
 ## Creating a docker file, docker image, and running the image in the container.
 
+FROM - A parent image that refers to the FROM directive in Docker. Most Dockerfiles start from a parent image (template). Since we are working with node our parent template will be FROM node:versionOfNode
+
+COPY - Helps bundle your application source code inside of a docker image.
+
+The first path is telling docker to use everything from this current directory
+
+The second path indicates where the files should be stored inside the docker image. This is detached from the application in your local directory.
+
+WORKDIR - Similar to CD, WORKDIR changes the directory. Since we copied everything into /app, this becomes the 'root' of our project. We need to be inside of /app to be able to work on it.
+
+RUN - command trigger that tells docker to npm install
+
+EXPOSE - it will bind the docker image to the port that your sever will be listening to
+
+CMD - command that launches a process that you define.
+
+Docker Image -
+
+docker build . -t nameofimage
+
+all lower case
+
+
+To active the docker image so it runs in a docker container:
+
+docker run -p 3000:3000 plantstore
