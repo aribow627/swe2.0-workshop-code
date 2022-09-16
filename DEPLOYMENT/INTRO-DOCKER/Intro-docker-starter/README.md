@@ -3,7 +3,9 @@
 ## OBJECTIVES
 
 -Today we will learn what the problem docker solves
+
 -We will learn what Docker is, what a docker file, docker image, and a docker container
+
 -We will learn how to create a dockerfile, docker image, and to run the image in a docker continer
 
 
