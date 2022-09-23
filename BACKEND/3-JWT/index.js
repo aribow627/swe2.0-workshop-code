@@ -17,8 +17,8 @@ require('dotenv').config();
 const bcrypt = require('bcrypt');
 const SALT_COUNT = 5;
 
-const {User} = require('./solution/db/User');
-const { sequelize } = require('./solution/db/db');
+const {User} = require('./db/User');
+const { sequelize } = require('./db/db');
 
 sequelize.sync({ force: false });
 
@@ -33,32 +33,40 @@ app.get('/', async (req, res, next) => {
 })
 
 
-//registering a user - safely storing a new user and attach a token
+//registering a user - attaching a token
 app.post('/register', async (req, res, next) => {
-
-})
-
-
-//login - always use post for the sake of demoing we can use get
-app.get('/user', async (req, res, next) => {
   try {
 
-  }   
-   catch (error) {
+  } catch (error) {
     console.error(error);
     next(error)
   }
 })
 
 
-//route that will only be accessbile to a user that is logged in and has a valid JWT
-app.get('/subscribers', async (req, res, next) => {
-  try {
+//login - always use post for the sake of demoing we can use get
+// app.get('/user', async (req, res, next) => {
+//   try {
+    
+//     } else {
+      
+//     }
+//   }   
+//    catch (error) {
+//     console.error(error);
+//     next(error)
+//   }
+// })
 
-  } catch (err) {
-    console.error(err)
-  }
-})
+
+//route that will only be accessbile to a user that is logged in and has a valid JWT
+// app.get('/subscribers', async (req, res, next) => {
+//   try {
+
+//   } catch (err) {
+//     console.error(err)
+//   }
+// })
 
 ///////////////////////// routes /////////////////////////
 
