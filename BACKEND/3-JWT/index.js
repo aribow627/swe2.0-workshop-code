@@ -100,13 +100,21 @@ app.get('/user', async (req, res, next) => {
 
 
 //route that will only be accessbile to a user that is logged in and has a valid JWT
-// app.get('/subscribers', async (req, res, next) => {
-//   try {
-
-//   } catch (err) {
-//     console.error(err)
-//   }
-// })
+app.get('/subscribers', async (req, res, next) => {
+  try {
+    //check to see if the request has a valid jwt token
+    //req.cookies.${name that you assigned the cookie with}
+    const token = req.cookies.token
+    //if there exists a token, then we can grant access to the rest of the endpoint
+    if(token) {
+      res.send(`Welcome back! You are a premium subscriber`)
+    } else {
+      res.send(`You are not a subscriber, consider registering for our application.`)
+    }
+  } catch (err) {
+    console.error(err)
+  }
+})
 
 ///////////////////////// routes /////////////////////////
 
