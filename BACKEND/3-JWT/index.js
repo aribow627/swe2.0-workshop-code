@@ -63,18 +63,40 @@ app.post('/register', async (req, res, next) => {
 
 
 //login - always use post for the sake of demoing we can use get
-// app.get('/user', async (req, res, next) => {
-//   try {
-    
-//     } else {
-      
-//     }
-//   }   
-//    catch (error) {
-//     console.error(error);
-//     next(error)
-//   }
-// })
+app.get('/user', async (req, res, next) => {
+  try {
+    const username = "user123"
+    const password = "abc123"
+    //we want to check to see if this attempted log in is valid
+    //1. we look up username in our User table
+    const user = await User.findOne({where: {username}})
+    //2. If a user is found, we are going to compare the plain-text password(we are going to hash this) with the stored password in our database
+    // "abc123" -> "asdfjlasaksjfdklaslf"
+    const attemptedPassword = await bcrypt.hash(password, SALT_COUNT)
+    //"asdfjlasaksjfdklaslf" ?== "$2b$05$dK7tUzIRXHfMEoCc4pgEx.HEkfKnXTiy/Lz2BkGZ42j5rsYX0sX6O"
+    const isAMatch = await bcrypt.compare(attemptedPassword, user.password) //true or false   
+    //3. If the password match, then we attach a json web token to the user
+    if(isAMatch){
+      const {id, username} = user //from our found user that logged in with their correct credentials
+      //to create a token .sign(payload, secret)
+      const token = jwt.sign({id, username}, JWT_SECRET)
+      //we need to store this token in a cookie so the user can navigate to other areas of the application and have the token persist
+      //.cookie(name, what you want to store, further options)
+      res.send(200).cookie('token', token, {
+          expires: new Date(Date.now() + 999999),
+          secure: true,
+          httpOnly: true
+      }).send(token)
+    } else {
+      //we can send back to the client an error message
+      res.sendStatus(401).send('USER does not exist or password is invalid try again!')
+    }
+  }
+  catch (error) {
+    console.error(error);
+    next(error)
+  }
+})
 
 
 //route that will only be accessbile to a user that is logged in and has a valid JWT
