@@ -31,7 +31,8 @@ COPY  . /app
 
 
 For the server Dockerfile:
-Use the parent image node:16. Create an enviornment variable[look up this docker command] called NODE_ENV=development. Change our working directory to /app. Copy all the content from package.json. Make sure we npm install. Copy all content into the top level of our directory . . 
+Use the parent image node:16. Create an enviornment variable[look up this docker command] called NODE_ENV=development. Change our working directory to /app. Copy all the content from package.json into . 
+Make sure we npm install. Copy all content into the top level of our directory . . 
 Expose port 3000 so docker is actively listening to that port
 run the command node server.js
 
