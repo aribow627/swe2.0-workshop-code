@@ -49,3 +49,15 @@ docker run -p port:port nameofimage
     - stop the containers and remove each image
 
 3. Demo on how to write our docker-compose.yml file -> the command to run this file
+
+- create a file called docker-compose.yml
+- docker-compose up
+    - build all images specified in the docker-compose.yml file
+
+    - run each image in containers 
+        docker-compose up
+
+    - to stop all processes
+        docker-compose down
+
+

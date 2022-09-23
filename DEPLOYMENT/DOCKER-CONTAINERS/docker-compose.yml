@@ -1,0 +1,18 @@
+# services lists the multiple different apps that we want to run via docker
+services:
+  #provide a name for each app
+  api:
+    #location of Dockerfile, build
+    build: ./server
+    # identify which port if your have server that docker should listen to
+    ports:
+      - 3000:3000
+
+  #provide a name for our second app
+  client:
+    #location of the Dockerfile
+    build: ./client
+    #id port
+    ports:
+      - 1234:1234
+
