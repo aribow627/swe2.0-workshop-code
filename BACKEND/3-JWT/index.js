@@ -36,6 +36,24 @@ app.get('/', async (req, res, next) => {
 //registering a user - attaching a token
 app.post('/register', async (req, res, next) => {
   try {
+    //req.body = {username: "user123", password: "abc123"}
+    const username = req.body.username
+    const password = req.body.password
+    //we want store this users information in our database
+    // we want to hash a users password first 
+    // bcrypt.hash(what you want to get hashed, saltcount)
+    const hashed = await bcrypt.hash(password, SALT_COUNT) //hashing our new user's password and also salting the hashed password for extra security
+
+    // creating a new user in our User table
+    const user = await User.create({username, password: hashed})
+
+    //We are going to attach a JSON web token to this new user
+    //To create a json web token -> .sign(payload, secret)
+    //you can create a secret by running a string through a hashing function ex: sha253
+    //JSON web token -> xxx.yyy.zzz <-encoded you can decode your payload back to its original form
+    const token = jwt.sign({id: user.id, username: user.username}, JWT_SECRET)
+
+    res.send({message: "User successfuly created!!", token})
 
   } catch (error) {
     console.error(error);
